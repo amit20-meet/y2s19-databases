@@ -8,8 +8,13 @@ Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-def add_article():
-	pass
+def add_article(knowledge_link, topic, title, rating):
+	article=Knowledge(knowledge_link=knowledge_link , topic=topic , title=title, rating=rating)
+	session.add(article)
+	session.commit()
+
+add_article(knowledge_link="https://en.wikipedia.org/wiki/HIV" , topic="hiv" , title="human immunodeficiency viruses", rating=8)
+print(add_article())
 
 def query_all_articles():
 	pass
