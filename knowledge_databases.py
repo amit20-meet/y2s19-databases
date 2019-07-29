@@ -13,20 +13,34 @@ def add_article(knowledge_link, topic, title, rating):
 	session.add(article)
 	session.commit()
 
-add_article(knowledge_link="https://en.wikipedia.org/wiki/HIV" , topic="hiv" , title="human immunodeficiency viruses", rating=8)
-print(add_article())
+# add_article(knowledge_link="https://en.wikipedia.org/wiki/HIV2" , topic="hiv" , title="human immunodeficiency viruses", rating=8)
 
 def query_all_articles():
-	pass
+	all_articles=session.query(Knowledge).all()
+	return all_articles
 
-def query_article_by_topic():
-	pass
+print(query_all_articles())
 
-def delete_article_by_topic():
-	pass
+
+def query_article_by_topic(articaltopic):
+	articles_topic=session.query(all_articles).filter_by(topic=articaltopic).first()
+	return articles_topic
+print(query_article_by_topic(hiv))
+
+
+def delete_article_by_topic(deletetopic):
+	session.query(Knowledge).filter_by(topic=deletetopic).delete()
+	session.commit()
+delete_article_by_topic(hiv)
+
 
 def delete_all_articles():
-	pass
+	session.query(all_articles).delete()
+	session.commit()
+delete_all_articles()
 
-def edit_article_rating():
-	pass
+def edit_article_rating(knowledge_link, rating):
+	article=session.query(Knowledge).filter_by(knowledge_link).first()
+	article.rating=rating
+edit_article_rating()
+

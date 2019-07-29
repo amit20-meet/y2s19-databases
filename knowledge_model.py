@@ -7,12 +7,16 @@ Base = declarative_base()
 
 class Knowledge(Base):
 	__tablename__= 'knowledge'
-	knowledge_link=column(string, primary_key=True)
-	topic=column(string)
-	title=column(string)
-	rating=column(integer)
-	
+	knowledge_link=Column(String, primary_key=True)
+	topic=Column(String)
+	title=Column(String)
+	rating=Column(Integer)
 
+	def __repr__(self):
+		return("Topic : {}\n"
+			"Title : {}\n"
+			"Rating : {}\n"
+			"Knowledge Link AMIT : {}").format(self.topic,self.title,self.rating,self.knowledge_link)
 
 	# Create a table with 4 columns
 	# The first column will be the primary key
